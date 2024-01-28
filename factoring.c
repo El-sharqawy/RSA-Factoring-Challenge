@@ -1,25 +1,37 @@
-#include "factoring.h"
+#include <stdio.h>
 
 /**
- * factoring - factorize a number.
- * @buf: a pointer to the number
+ * trial_division - factorize a number.
+ * @buf: a number to be used
  *
  * Return: always 0 (Success)
  */
-int factoring(char *buf)
+int trial_division(long int n)
 {
-	unsigned int i;
-	unsigned int num;
+	long int fNum;
 
-	num = atoi(buf);
-
-	for (i = 2; i < num; i++)
+	if (n % 2 == 0)
 	{
-		if (num % i == 0)
+		printf("%lu=%lu*%i\n", n, n / 2, 2);
+		return (0);
+	}
+
+	fNum = 3;
+
+	while (fNum * fNum <= n)
+	{
+		if (n % fNum == 0)
 		{
-			printf("%d=%d*%d\n", num, num / i, i);
-			break;
+			printf("%lu=%lu*%lu\n", n, n / fNum, fNum);
+			return (0);
+		}
+		else
+		{
+			fNum += 2;
 		}
 	}
+
+	printf("%lu=%lu*%i\n", n, n, 1);
+
 	return (0);
 }
